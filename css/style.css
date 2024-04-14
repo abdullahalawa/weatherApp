@@ -81,3 +81,19 @@ div.forcast .card-top-bar {
   background-color: #2d303d;
   color: #bfc1c8;
 }
+
+div.forcast .card-body {
+  background-color: #323544;
+}
+
+div.forcast .temp-info p {
+  font-size: 72px;
+}
+
+div.forcast .general-weather-desc {
+  color: #009ad8;
+}
+
+.weather-params {
+  color: #bfc1c8;
+}
