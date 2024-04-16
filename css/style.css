@@ -58,9 +58,9 @@ input.weather-Input::placeholder {
 }
 
 button.weather-btn {
-  right: 0;
-  top: 0;
-  bottom: 0;
+  right: 20px;
+  top: 10px;
+
   background-color: var(--accent-color);
   color: #fff;
   padding-inline: 30px;
@@ -77,9 +77,14 @@ div.forcast {
   background-color: var(--primary-color);
 }
 
+div.forcast .row {
+  margin-top: -150px;
+}
+
 div.forcast .card-top-bar {
   background-color: #2d303d;
   color: #bfc1c8;
+  border-radius: 5px 0 0 0;
 }
 
 div.forcast .card-body {
@@ -96,4 +101,35 @@ div.forcast .general-weather-desc {
 
 .weather-params {
   color: #bfc1c8;
+}
+
+div.forcast .card-top-bar-middle {
+  background-color: #222531;
+  color: #bfc1c8;
+}
+
+div.forcast .card-body-middle {
+  background-color: #262936;
+}
+
+/* footer Style */
+footer {
+  padding-block: 100px;
+  background-color: var(--secondery-color);
+}
+
+footer span {
+  height: 45px !important;
+  width: 45px !important;
+  background-color: var(--primary-color);
+  position: relative;
+}
+
+footer span i {
+  color: var(--accent-color);
+  position: absolute;
+  transform: translateY(-50%);
+  top: 50%;
+  left: 0;
+  right: 0;
 }
