@@ -122,7 +122,9 @@ async function getWeatherData(city) {
 }
 
 cityNameInput.addEventListener("input", async function (e) {
-  getWeatherData(cityNameInput.value);
+  if (cityNameInput.value.length > 2) {
+    getWeatherData(cityNameInput.value);
+  }
 });
 
 getCityWeatherBtn.addEventListener("click", async function (e) {
