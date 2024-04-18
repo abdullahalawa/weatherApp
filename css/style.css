@@ -35,6 +35,10 @@ nav.navbar div.container ul li a:hover {
   border-radius: 20px;
 }
 
+button.navbar-toggler {
+  background-color: #fff;
+}
+
 /* Hero Section */
 div.hero-section {
   background-image: url("../images/banner.png");
@@ -112,6 +116,17 @@ div.forcast .card-body-middle {
   background-color: #262936;
 }
 
+#cardOne .card-body {
+  padding-block: 50px;
+  padding-inline: 20px;
+}
+
+#cardTwo .card-body-middle,
+#cardThree .card-body {
+  padding-block: 63px;
+  padding-inline: 20px;
+}
+
 /* footer Style */
 footer {
   padding-block: 100px;
@@ -123,6 +138,7 @@ footer span {
   width: 45px !important;
   background-color: var(--primary-color);
   position: relative;
+  transition: var(--transition);
 }
 
 footer span i {
@@ -132,4 +148,24 @@ footer span i {
   top: 50%;
   left: 0;
   right: 0;
+  transition: var(--transition);
+}
+
+footer span:hover {
+  background-color: var(--accent-color);
+  color: #fff !important;
+}
+
+footer span:hover i {
+  color: #fff;
+}
+
+#newsletterBtn {
+  right: 20px !important;
+  top: 10px !important;
+
+  background-color: var(--accent-color);
+  color: #fff;
+  padding-inline: 30px;
+  z-index: 99;
 }

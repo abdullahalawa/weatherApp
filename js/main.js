@@ -11,7 +11,7 @@ let cardthreeDisplay = document.querySelector("#cardThree");
 const apiKey = "076be003a33e4be784a141116241304";
 let cityName = "Damascus";
 // let baseURL = `https://api.weatherapi.com/v1/forecast.json?q=${cityName}&key=${apiKey}&days=3`;
-// let data = {};
+let data = {};
 
 //Get Day Name
 {
@@ -76,60 +76,55 @@ async function getWeatherData(city) {
 
   let finalData = await response.json();
 
-  // Current Day Data
-  // City Name
-  cardOneDisplay.lastElementChild.children[0].innerHTML =
-    finalData.location.name;
-  // Date
-  cardOneDisplay.firstElementChild.lastElementChild.innerHTML = getFormatedDate(
-    finalData.forecast.forecastday[0].date
-  );
-  // Average Tempreture
-  cardOneDisplay.lastElementChild.children[1].firstElementChild.innerHTML = `${finalData.forecast.forecastday[0].day.avgtemp_c}<sup>o</sup>C</sup>`;
-  // Weather Icon
-  cardOneDisplay.lastElementChild.children[1].children[1].src = `https://${finalData.forecast.forecastday[0].day.condition.icon}`;
-  // Weather State title
-  cardOneDisplay.lastElementChild.children[1].nextElementSibling.innerHTML = `${finalData.forecast.forecastday[0].day.condition.text}`;
-  // daily chance of rain
-  cardOneDisplay.lastElementChild.lastElementChild.firstElementChild.lastElementChild.innerHTML = `${finalData.forecast.forecastday[0].day.daily_chance_of_rain}%`;
-  // Max Wind Kph
-  cardOneDisplay.lastElementChild.lastElementChild.children[1].lastElementChild.innerHTML = `${finalData.forecast.forecastday[0].day.maxwind_kph}km/h`;
-  // Wind Direction
-  cardOneDisplay.lastElementChild.lastElementChild.children[2].lastElementChild.innerHTML = `${formateWindDirectionFromDegrees(
-    finalData.forecast.forecastday[0].hour[0].wind_degree
-  )}`;
+  if (response.status === 200) {
+    // Current Day Data
+    // City Name
+    cardOneDisplay.lastElementChild.children[0].innerHTML = `${finalData.location.name}`;
 
-  // Second Day Data
-  // Weather Icon
-  cardtwoDisplay.lastElementChild.firstElementChild.firstElementChild.src = `https://${finalData.forecast.forecastday[1].day.condition.icon}`;
-  // max Temp
-  cardtwoDisplay.lastElementChild.firstElementChild.children[1].innerHTML = `${finalData.forecast.forecastday[1].day.maxtemp_c}<sup>o</sup>C`;
-  // min Temp
-  cardtwoDisplay.lastElementChild.firstElementChild.children[2].innerHTML = `${finalData.forecast.forecastday[1].day.mintemp_c}<sup>o</sup>C`;
-  // Weather State title
-  cardtwoDisplay.lastElementChild.firstElementChild.nextElementSibling.innerHTML = `${finalData.forecast.forecastday[1].day.condition.text}`;
+    // Date
+    cardOneDisplay.firstElementChild.lastElementChild.innerHTML =
+      getFormatedDate(finalData.forecast.forecastday[0].date);
+    // Average Tempreture
+    cardOneDisplay.lastElementChild.children[1].firstElementChild.innerHTML = `${finalData.forecast.forecastday[0].day.avgtemp_c}<sup>o</sup>C</sup>`;
+    // Weather Icon
+    cardOneDisplay.lastElementChild.children[1].children[1].src = `https://${finalData.forecast.forecastday[0].day.condition.icon}`;
+    // Weather State title
+    cardOneDisplay.lastElementChild.children[1].nextElementSibling.innerHTML = `${finalData.forecast.forecastday[0].day.condition.text}`;
+    // daily chance of rain
+    cardOneDisplay.lastElementChild.lastElementChild.firstElementChild.lastElementChild.innerHTML = `${finalData.forecast.forecastday[0].day.daily_chance_of_rain}%`;
+    // Max Wind Kph
+    cardOneDisplay.lastElementChild.lastElementChild.children[1].lastElementChild.innerHTML = `${finalData.forecast.forecastday[0].day.maxwind_kph}km/h`;
+    // Wind Direction
+    cardOneDisplay.lastElementChild.lastElementChild.children[2].lastElementChild.innerHTML = `${formateWindDirectionFromDegrees(
+      finalData.forecast.forecastday[0].hour[0].wind_degree
+    )}`;
 
-  // Thired Day Data
-  // Weather Icon
-  cardthreeDisplay.lastElementChild.firstElementChild.firstElementChild.src = `https://${finalData.forecast.forecastday[2].day.condition.icon}`;
-  // max Temp
-  cardthreeDisplay.lastElementChild.firstElementChild.children[1].innerHTML = `${finalData.forecast.forecastday[2].day.maxtemp_c}<sup>o</sup>C`;
-  // min Temp
-  cardthreeDisplay.lastElementChild.firstElementChild.children[2].innerHTML = `${finalData.forecast.forecastday[2].day.mintemp_c}<sup>o</sup>C`;
-  // Weather State title
-  cardthreeDisplay.lastElementChild.firstElementChild.nextElementSibling.innerHTML = `${finalData.forecast.forecastday[2].day.condition.text}`;
+    // Second Day Data
+    // Weather Icon
+    cardtwoDisplay.lastElementChild.firstElementChild.firstElementChild.src = `https://${finalData.forecast.forecastday[1].day.condition.icon}`;
+    // max Temp
+    cardtwoDisplay.lastElementChild.firstElementChild.children[1].innerHTML = `${finalData.forecast.forecastday[1].day.maxtemp_c}<sup>o</sup>C`;
+    // min Temp
+    cardtwoDisplay.lastElementChild.firstElementChild.children[2].innerHTML = `${finalData.forecast.forecastday[1].day.mintemp_c}<sup>o</sup>C`;
+    // Weather State title
+    cardtwoDisplay.lastElementChild.firstElementChild.nextElementSibling.innerHTML = `${finalData.forecast.forecastday[1].day.condition.text}`;
 
-  console.log(
-    cardtwoDisplay.lastElementChild.firstElementChild.nextElementSibling
-  );
+    // Thired Day Data
+    // Weather Icon
+    cardthreeDisplay.lastElementChild.firstElementChild.firstElementChild.src = `https://${finalData.forecast.forecastday[2].day.condition.icon}`;
+    // max Temp
+    cardthreeDisplay.lastElementChild.firstElementChild.children[1].innerHTML = `${finalData.forecast.forecastday[2].day.maxtemp_c}<sup>o</sup>C`;
+    // min Temp
+    cardthreeDisplay.lastElementChild.firstElementChild.children[2].innerHTML = `${finalData.forecast.forecastday[2].day.mintemp_c}<sup>o</sup>C`;
+    // Weather State title
+    cardthreeDisplay.lastElementChild.firstElementChild.nextElementSibling.innerHTML = `${finalData.forecast.forecastday[2].day.condition.text}`;
+  }
 }
 
-cityNameInput.addEventListener("enter", async function (e) {
-  data = await getWeatherData(cityNameInput.value);
+cityNameInput.addEventListener("input", async function (e) {
+  getWeatherData(cityNameInput.value);
+});
 
-  if (data == 400) {
-    console.log("not valide city name");
-  } else {
-    cityNamedisplay.innerHTML = data.location.name;
-  }
+getCityWeatherBtn.addEventListener("click", async function (e) {
+  getWeatherData(cityNameInput.value);
 });
